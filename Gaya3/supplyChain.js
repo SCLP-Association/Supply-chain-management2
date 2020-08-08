@@ -389,17 +389,30 @@ async function addUser() {
 	var userData;
 	console.log(userName,location,ethAddress,role);
 	console.log("iam a issue function");
-	SupplyChain.methods
-		.addPatner(ethAddress,web3.utils.fromAscii(userName),web3.utils.fromAscii(location),web3.utils.fromAscii(role))
+	if(role = 'assembler'){
+		SupplyChain.methods
+		.addManufacturer(ethAddress,web3.utils.fromAscii(userName),web3.utils.fromAscii(location))
 		.send({from: web3.eth.defaultAccount})
 		 .on('receipt',function(receipt){
 			 console.log(receipt);
 		 });
 	
 	userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
-	
 	userId++;
 	$('#userDetails').append(userData);
+	}
+	else{
+		SupplyChain.methods
+		.addPatner(ethAddress,web3.utils.fromAscii(userName),web3.utils.fromAscii(location),web3.utils.fromAscii(role))
+		.send({from: web3.eth.defaultAccount})
+		 .on('receipt',function(receipt){
+			 console.log(receipt);
+		 });
+	
+		userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
+		userId++;
+		$('#userDetails').append(userData);
+	}
 	
 }
 
