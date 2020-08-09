@@ -24,7 +24,7 @@ modifier onlyPartner(){
     }
 }
 struct manufacturer{
-    address mfgaddress;
+    address mfgAddress;
     bytes32 mfgName;
     bytes32 mfgLocation;
 }
@@ -47,16 +47,15 @@ struct product{
 mapping(uint256 => product) public productDetails;
 uint256[] public products;
 
-    function addManufacturer(address mfgaddress,bytes32 mfgName,bytes32 mfgLocation) public onlyOwner(){
-        manufacturerDetails[mfgaddress].mfgaddress = mfgaddress;
-        manufacturerDetails[mfgaddress].mfgName = mfgName;
-        manufacturerDetails[mfgaddress].mfgLocation = mfgLocation;
-        manufacturers.push(mfgaddress);
+    function addManufacturer(address mfgAddress,bytes32 mfgName,bytes32 mfgLocation) public onlyOwner(){
+        manufacturerDetails[mfgAddress].mfgAddress = mfgAddress;
+        manufacturerDetails[mfgAddress].mfgName = mfgName;
+        manufacturerDetails[mfgAddress].mfgLocation = mfgLocation;
+        manufacturers.push(mfgAddress);
     }
-    function verifyManufacturer(address mfgaddress) view public returns(address,bytes32, bytes32){
-        return(manufacturerDetails[mfgaddress].mfgaddress,manufacturerDetails[mfgaddress].mfgName, manufacturerDetails[mfgaddress].mfgLocation);
+    function verifyManufacturer(address mfgAddress) view public returns(address,bytes32, bytes32){
+        return(manufacturerDetails[mfgAddress].mfgAddress,manufacturerDetails[mfgAddress].mfgName, manufacturerDetails[mfgAddress].mfgLocation);
     }
-
     function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlyManufacturer() {
         partnerDetails[partnerAddress].partnerAddress = partnerAddress;
         partnerDetails[partnerAddress].partnerName = partnerName;

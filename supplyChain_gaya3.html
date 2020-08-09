@@ -148,7 +148,7 @@
                                             <th class="text-center">Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="productDetails">
                                         <tr>
                                             <td class="text-center text-muted">345678</td>
                                             <td>
@@ -173,60 +173,8 @@
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#viewUpdateProduct">view / update</button></div></td>
                                             
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">345679</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">Elliot Huber</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-danger">In Progress</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">345680</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">Ruben Tillman</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
-                                            <td class="text-center"><div class="badge badge-info">On Hold</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -299,17 +247,15 @@
                     </button>
                 </div>
                 <div class="modal-body" id="addProduct">
-                    <div class="position-relative form-group"><label for="" >Initiator Name</label><input  id=""  type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Location</label><input  id="" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Product Name</label><input  id="" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Product State</label><input id="" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Time Stamp</label><input  id=""  type="number" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Partner Address</label><input  id=""  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label id="productName" for="productName" >Product Name</label><input  id="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label id="productState" for="productState" >Product State</label><input id="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label id="timeStamp" for="timeStamp" >Time Stamp</label><input  id=""  type="number" class="form-control"></div>
+                    <div class="position-relative form-group"><label id="partnerAddress" for="partnerAddress" >Partner Address</label><input  id=""  type="text" class="form-control"></div>
                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addProduct()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -352,7 +298,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- view/update product modal -->
+    <div class="modal fade" id="viewUpdateProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -370,7 +317,28 @@
                 </div>
             </div>
         </div>
-    </div><script type="text/javascript" src="./assets/scripts/main.js"></script>
+    </div>
+    <!-- view/update user modal -->
+    <div class="modal fade" id="viewUpdateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./assets/scripts/main.js"></script>
 <script src="./Gaya3/supplyChain.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

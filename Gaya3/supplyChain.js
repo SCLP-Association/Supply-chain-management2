@@ -397,7 +397,7 @@ async function addUser() {
 			 console.log(receipt);
 		 });
 	
-	userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
+	userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="Pending">Pending</div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
 	userId++;
 	$('#userDetails').append(userData);
 	}
@@ -409,10 +409,31 @@ async function addUser() {
 			 console.log(receipt);
 		 });
 	
-		userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
+		userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="">Pending</div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
 		userId++;
 		$('#userDetails').append(userData);
 	}
 	
 }
+// async function addProduct() {
+// 	var productName = $('#productName').val();
+// 	var productState = $('#productState').val();
+// 	var timeStamp = $('#timeStamp').val();
+// 	var partnerAddress = $('#partnerAddress').val();
+// 	var proId=1000;
+// 	var productData;
+// 	console.log(productName,productState,timeStamp,partnerAddress);
+// 	console.log("iam a issue function");
+// 		SupplyChain.methods
+// 		.addProduct(web3.utils.fromAscii(productName),web3.utils.fromAscii(productState),web3.utils.fromAscii(timeStamp),partnerAddress)
+// 		.send({from: web3.eth.defaultAccount})
+// 		 .on('receipt',function(receipt){
+// 			 console.log(receipt);
+// 		 });
+	
+// 		 productData=' <tr><td class="text-center text-muted">'+proId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
+// 		 proId++;
+// 	$('#userDetails').append(productData);
+// }
+
 
