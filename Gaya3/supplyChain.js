@@ -1,15 +1,14 @@
-var  contractAddress = "0x021c8b35f6a72ab88bf97b5e8011f5b2ee48a548";
+var  contractAddress = "0xea09dfd105c0214923e4b34a3eb0c5298efed1d0";
 var accounts;
 abi = [
 	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"constant": false,
 		"inputs": [
+			{
+				"internalType": "address",
+				"name": "mfgAddress",
+				"type": "address"
+			},
 			{
 				"internalType": "bytes32",
 				"name": "mfgName",
@@ -118,6 +117,42 @@ abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_proId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address[]",
+				"name": "partAddress",
+				"type": "address[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "proState",
+				"type": "bytes32[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "timeStamp",
+				"type": "bytes32[]"
+			}
+		],
+		"name": "updateProduct",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "owner",
@@ -170,21 +205,6 @@ abi = [
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "proId",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -226,38 +246,29 @@ abi = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "proId",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "_proId",
+				"name": "",
 				"type": "uint256"
-			},
-			{
-				"internalType": "address[]",
-				"name": "partAddress",
-				"type": "address[]"
-			},
-			{
-				"internalType": "bytes32[]",
-				"name": "proState",
-				"type": "bytes32[]"
-			},
-			{
-				"internalType": "bytes32[]",
-				"name": "timeStamp",
-				"type": "bytes32[]"
 			}
 		],
-		"name": "updateProduct",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"constant": true,
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "mfgAddress",
+				"type": "address"
+			}
+		],
 		"name": "verifyManufacturer",
 		"outputs": [
 			{
@@ -387,19 +398,19 @@ async function addUser() {
 	var role = $('#userRole').val();
 	var userId=345678;
 	var userData;
+	var noOfUsers=0;
 	console.log(userName,location,ethAddress,role);
 	console.log("iam a issue function");
-	if(role = 'assembler'){
+	if(role = $('#assembler').val()){
 		SupplyChain.methods
 		.addManufacturer(ethAddress,web3.utils.fromAscii(userName),web3.utils.fromAscii(location))
 		.send({from: web3.eth.defaultAccount})
 		 .on('receipt',function(receipt){
 			 console.log(receipt);
+			 userId++;
 		 });
-	
-	userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="Pending">Pending</div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
-	userId++;
-	$('#userDetails').append(userData);
+		userData='<tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="Pending"></div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
+		$('#userDetails').append(userData);
 	}
 	else{
 		SupplyChain.methods
@@ -407,33 +418,13 @@ async function addUser() {
 		.send({from: web3.eth.defaultAccount})
 		 .on('receipt',function(receipt){
 			 console.log(receipt);
+			 userId++;
 		 });
-	
-		userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="">Pending</div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
-		userId++;
+		userData=' <tr><td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning" value="Pending"></div></td><td class="text-center"><button type="button" data-toggle="modal" class="btn btn-primary btn-sm" data-target="#viewUpdateUser">View / Update</button></td></tr>'
 		$('#userDetails').append(userData);
-	}
+		
+	  }
 	
 }
-// async function addProduct() {
-// 	var productName = $('#productName').val();
-// 	var productState = $('#productState').val();
-// 	var timeStamp = $('#timeStamp').val();
-// 	var partnerAddress = $('#partnerAddress').val();
-// 	var proId=1000;
-// 	var productData;
-// 	console.log(productName,productState,timeStamp,partnerAddress);
-// 	console.log("iam a issue function");
-// 		SupplyChain.methods
-// 		.addProduct(web3.utils.fromAscii(productName),web3.utils.fromAscii(productState),web3.utils.fromAscii(timeStamp),partnerAddress)
-// 		.send({from: web3.eth.defaultAccount})
-// 		 .on('receipt',function(receipt){
-// 			 console.log(receipt);
-// 		 });
-	
-// 		 productData=' <tr><td class="text-center text-muted">'+proId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td></tr>'
-// 		 proId++;
-// 	$('#userDetails').append(productData);
-// }
 
 
